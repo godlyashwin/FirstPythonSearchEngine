@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="search-container">
+        <h1>Search Results for "{{ query }}"</h1>
+        <form action="{{ url_for('search_route') }}" method="POST">
+            <input type="text" name="query" value="{{ query }}" placeholder="Enter your search query" autofocus>
+            <button type="submit">Search</button>
+        </form>
+        <div class="results">
+            {% if results %}
+                <ul>
+                    {% for result in results %}
+                        <li>{{ result }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No results found.</p>
+            {% endif %}
+        </div>
+        <div class="homeButton"></div>
+        <a href="d{{ url_for('home') }}">Back to Home</a>
+    </div>
+</body>
+</html>

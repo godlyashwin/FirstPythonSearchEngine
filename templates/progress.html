@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="progress-container">
+        <h1>Processing your search...</h1>
+        <div class="spinner" id="spinner"></div>
+        <p id="progress-message">Starting...</p>
+        <div id="progress-bar" class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <div id="results-container" class="results" style="display: none;">
+            <h2>Search Results for "{{ query }}"</h2>
+            <ul id="results-list"></ul>
+            <a href="{{ url_for('home') }}">Back to Home</a>
+        </div>
+    </div>
+    <script>
+        // Define query as a JavaScript variable
+        window.searchQuery = {{ query | tojson | safe }};
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
